@@ -1,0 +1,18 @@
+ext{
+    serenityCucumberVersion = '1.9.15'
+    assertJVersion='3.11.1'
+    logbackVersion='1.2.3'
+    webdrivermanagerVersion='3.0.0'
+
+    libs = [
+            logback: "ch.qos.logback:logback-classic:${logbackVersion}",
+
+            test: [
+                    serenity: [
+                            cucumber: "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}",
+                    ],
+                    assertj: "org.assertj:assertj-core:${assertJVersion}",
+                    webdrivermanager: "io.github.bonigarcia:webdrivermanager:${webdrivermanagerVersion}"
+            ]
+    ]
+}
