@@ -20,8 +20,12 @@ public class MyChromeDriver implements DriverSource {
 
 
         ChromeOptions options = new ChromeOptions();
+<<<<<<< HEAD
         options.addArguments("--start-fullscreen", "--test-type", "--no-first-run");
 
+=======
+        options.addArguments("--start-maximized");
+>>>>>>> b5663861b5132351de73c8f046493837ee203dd2
         ChromeDriver chromeDriver = new ChromeDriver(options);
 
         logger.info("Using ChromeDriver with config -> " + chromeDriver.getCapabilities().toString());
