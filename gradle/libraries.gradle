@@ -1,25 +1,18 @@
 ext{
-    slf4jVersion = '1.7.25'
-    serenityCoreVersion = '1.9.45'
     serenityCucumberVersion = '1.9.15'
-    screenplayWebdriverVersion = '1.9.43'
-    junitVersion='4.12'
     assertJVersion='3.11.1'
     logbackVersion='1.2.3'
+    webdrivermanagerVersion='3.0.0'
 
     libs = [
-            slf4jApi: "org.slf4j:slf4j-api:$slf4jVersion",
             logback: "ch.qos.logback:logback-classic:${logbackVersion}",
 
             test: [
                     serenity: [
-                            core: "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
-                            screenplay: "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
-                            screenplayWebdriver: "net.serenity-bdd:serenity-screenplay-webdriver:${screenplayWebdriverVersion}",
                             cucumber: "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}",
                     ],
-                    junit: "junit:junit:${junitVersion}",
-                    assertj: "org.assertj:assertj-core:${assertJVersion}"
+                    assertj: "org.assertj:assertj-core:${assertJVersion}",
+                    webdrivermanager: "io.github.bonigarcia:webdrivermanager:${webdrivermanagerVersion}"
             ]
     ]
 }

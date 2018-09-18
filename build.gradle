@@ -1,5 +1,3 @@
-defaultTasks 'clean','test','aggregate'
-
 repositories {
     mavenLocal()
     jcenter()
@@ -25,31 +23,16 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile libs.slf4jApi,
-            libs.logback,
-            libs.test.serenity.core,
-            libs.test.serenity.screenplay,
-            libs.test.serenity.screenplayWebdriver,
-            libs.test.serenity.cucumber,
-            libs.test.junit
+    compile libs.test.serenity.cucumber,
+            libs.test.webdrivermanager
 
-    testCompile libs.test.assertj
-    compile("io.github.bonigarcia:webdrivermanager:3.0.0")
-
+    testCompile libs.test.assertj,
+                libs.logback
 }
 
 test {
-    testLogging.showStandardStreams = false
+    testLogging.showStandardStreams = true
     systemProperties System.getProperties()
 }
 
-//task runParallel(type: Test) {
-//    maxParallelForks = 2
-//    options {
-//        systemProperties(System.getProperties())
-//    }
-//}
-
 gradle.startParameter.continueOnFailure = true
-
-test.finalizedBy(aggregate)

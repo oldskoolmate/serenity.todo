@@ -1,6 +1,5 @@
 package todos.cucumber.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -8,9 +7,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import todos.model.Status;
-import todos.questions.Items;
-import todos.tasks.*;
+import todos.screenplay.model.Status;
+import todos.screenplay.questions.Items;
+import todos.screenplay.tasks.*;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class TodoSteps {
 
     @When("^s?he adds '(.*)' to (?:her|his) list$")
     public void addsItemToList(String item) {
-        theActorInTheSpotlight().attemptsTo(AddATodoItem.called(item));
+        theActorInTheSpotlight().attemptsTo(AddItem.called(item));
     }
 
     @Then("^'(.*)' should be created in (?:her|his) list$")
@@ -54,17 +53,17 @@ public class TodoSteps {
 
     @When("^s?he completes the item called '(.*)'$")
     public void userCompletesItem(String item) {
-        theActorInTheSpotlight().attemptsTo(CompleteTodoItem.called(item));
+        theActorInTheSpotlight().attemptsTo(CompleteItem.called(item));
     }
 
     @When("^s?he completes the items called '(.*)'$")
     public void userCompletesItems(List<String> items) {
-        theActorInTheSpotlight().attemptsTo(CompleteTodoItems.called(items));
+        theActorInTheSpotlight().attemptsTo(CompleteItems.called(items));
     }
 
     @And("^s?he filters (?:her|his) list to show(?: only)? (\\w+) items$")
     public void userFiltersListBy(Status status) {
-        theActorInTheSpotlight().attemptsTo(FilterTodoItems.byStatus(status));
+        theActorInTheSpotlight().attemptsTo(FilterItems.byStatus(status));
     }
 
     @Then("^(?:her|his) todo list should be empty$")
@@ -74,7 +73,7 @@ public class TodoSteps {
 
     @When("^s?he clears all completed items$")
     public void userClicksOnClearCompletedButton() {
-        theActorInTheSpotlight().attemptsTo(ClearAllCompleted.items());
+        theActorInTheSpotlight().attemptsTo(ClearAllCompletedItems.items());
     }
 
     @When("^s?he toggles the status of all items$")
@@ -87,8 +86,13 @@ public class TodoSteps {
         theActorInTheSpotlight().should(seeThat(Items.leftCount(), is(count)));
     }
 
+    @Then("^'(.*)' should appear as completed in (?:her|his) list$")
+    public void itemShouldBeCompletedInTheList(String expectedItem) {
+        theActorInTheSpotlight().should(seeThat(Items.completed(), hasItem(expectedItem)));
+    }
+
     @Given("^(\\w+) has completed items '(.*)' in (?:her|his) todo list$")
-    public void johnHasCompletedItemsFixMyCarWalkTheDogInHisTodoList(String actorName, List<String> items) throws Throwable {
+    public void johnHasCompletedItemsFixMyCarWalkTheDogInHisTodoList(String actorName, List<String> items) {
         hasItemsInTodoList(actorName, items);
         userCompletesItems(items);
     }

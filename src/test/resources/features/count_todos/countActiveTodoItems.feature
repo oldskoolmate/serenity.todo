@@ -10,5 +10,5 @@ Feature: Items left counter should reflect count of current active items
 
   Scenario: Items left counter should get decremented when an item is completed
     Given John has items 'Fix my car, Walk the dog, Find a new job' in his todo list
-    When she completes the item called 'Find a new job'
+    When he completes the item called 'Find a new job'
     Then he should see 2 items left on his todo list counter

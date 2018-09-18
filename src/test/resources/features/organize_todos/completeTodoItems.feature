@@ -5,14 +5,7 @@ Feature: Completing todo items
   User should be able to organize his list by marking items as completed
 
 
-  Scenario: Completed items list should show completed items
+  Scenario: Completed items should appear as completed in a list
     Given John has items 'Fix my car, Walk the dog' in his todo list
     When he completes the item called 'Walk the dog'
-    And he filters his list to show only Completed items
-    Then his todo list should contain item 'Walk the dog'
-
-
-  Scenario: Completed items list should be empty when there is nothing completed
-    Given John has items 'Fix my car, Walk the dog' in his todo list
-    When he filters his list to show only Completed items
-    Then his todo list should be empty
+    Then 'Walk the dog' should appear as completed in his list

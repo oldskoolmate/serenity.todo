@@ -18,12 +18,14 @@ public class MyChromeDriver implements DriverSource {
     public WebDriver newDriver() {
         ChromeDriverManager.getInstance(CHROME).setup();
 
+
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
+        options.addArguments("--start-fullscreen", "--test-type", "--no-first-run");
+
         ChromeDriver chromeDriver = new ChromeDriver(options);
 
         logger.info("Using ChromeDriver with config -> " + chromeDriver.getCapabilities().toString());
-        logger.info("Using ChromeDriver with options -> " + options.toString());
+        logger.info("Using ChromeDriver with options -> " + options.asMap());
 
         return chromeDriver;
     }

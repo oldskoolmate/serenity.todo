@@ -5,8 +5,6 @@ Feature: Clear all completed todo items
 
 
   Scenario: Todo list should be empty when all completed items are cleared
-    Given John has items 'Fix my car, Walk the dog' in his todo list
-    And he completes the item called 'Walk the dog'
-    And he completes the item called 'Fix my car'
+    Given John has completed items 'Fix my car, Walk the dog' in his todo list
     When he clears all completed items
     Then his todo list should be empty
