@@ -19,7 +19,7 @@ public class MyChromeDriver implements DriverSource {
         ChromeDriverManager.getInstance(CHROME).setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
+        options.addArguments("--start-maximized");
         ChromeDriver chromeDriver = new ChromeDriver(options);
 
         logger.info("Using ChromeDriver with config -> " + chromeDriver.getCapabilities().toString());
